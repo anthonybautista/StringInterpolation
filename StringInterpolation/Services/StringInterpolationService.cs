@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Microsoft.Extensions.Logging;
 using StringInterpolation.Utils;
 
@@ -94,7 +95,9 @@ namespace StringInterpolation.Services
         public string Number09()
         {
             var pi = Math.PI;
-            var answer = String.Format("{0:C}", pi);
+            // github workflow was not using the correct currency symbol. Found this solution at:
+            // https://stackoverflow.com/questions/10416553/string-format-currency
+            var answer = @String.Format(new CultureInfo("en-US"), "{0:C}", pi);
 
             return answer;
         }
